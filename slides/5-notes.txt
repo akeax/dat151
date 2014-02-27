@@ -1,0 +1,37 @@
+-- type checker --
+typing rules
+static semantics
+compile-time
+
+gamma -> e : t
+gamma -> s valid
+
+gamma: context
+<x, t>
+variables, types
+
+-- interpeter --
+operational semantic rules
+dynamic sematics
+runtime
+
+gamma -> e v v
+gamma -> s v gamma'
+
+gamma: environment
+x := v
+variables, values
+
+Type checking has already been done!
+We -know- what addition alg. to use
+
+
+-- Evaluate statements --
+gamma. -> ss1 => gamma'.delta     gamma' -> ss2 => gamma''
+----------------------------------------------------------
+gamma -> {ss1} ss2 => gamma''
+
+We use gamma' without delta to evaluate coming statements (ss2)!
+The delta represents things added in new block. We discard it,
+but still use gamma' since ss1 may -change- the environment!
+

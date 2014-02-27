@@ -1,0 +1,5 @@
+main = twice tentimes 5
+-- only 9 times?
+tentimes x = twice threetimes x + x
+threetimes x = x + x + x
+twice f x = f (f x)
