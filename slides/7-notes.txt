@@ -1,4 +1,4 @@
-EVar. Exp3 ::= Ident
+EIdent. Exp3 ::= Ident
 EApp. Exp2 ::= Exp2 Exp3
 EAbs. Exp  ::= "\\" Ident "->" Exp
 coercions Exp 3
@@ -6,7 +6,15 @@ coercions Exp 3
 Common for all functional languages:
 functions take only one argument (apply iteratively!)
 
-Environment: maps identifiers to values
+Environment: maps identifiers to 
 (f x = x would be written using abstraction: f = \x -> x)
 
 main should return integer
+
+Alpha conversion: can we rename a variable in all places and get the same meaning?
+Not in haskell lol! Since indentation matters
+
+
+Closure: expression with environment
+
+

@@ -21,19 +21,19 @@ transProgram x = case x of
 
 transDef :: Def -> Result
 transDef x = case x of
-  Def id ids exp  -> failure x
+  Df id ids exp  -> failure x
 
 
 transExp :: Exp -> Result
 transExp x = case x of
   EVar id  -> failure x
-  EApp exp1 exp2  -> failure x
-  EAbs id exp  -> failure x
   EInt n  -> failure x
-  EAdd exp1 exp2  -> failure x
-  ESub exp1 exp2  -> failure x
-  ELt exp1 exp2  -> failure x
-  EIf exp1 exp2 exp3  -> failure x
+  EApp exp1 exp2  -> failure x
+  EPlus exp1 exp2  -> failure x
+  EMinus exp1 exp2  -> failure x
+  ELess exp1 exp2  -> failure x
+  ECond exp1 exp2 exp3  -> failure x
+  EAbs id exp  -> failure x
 
 
 

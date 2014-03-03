@@ -9,17 +9,17 @@ data Program =
   deriving (Eq,Ord,Show)
 
 data Def =
-   Def Ident [Ident] Exp
+   Df Ident [Ident] Exp
   deriving (Eq,Ord,Show)
 
 data Exp =
    EVar Ident
- | EApp Exp Exp
- | EAbs Ident Exp
  | EInt Integer
- | EAdd Exp Exp
- | ESub Exp Exp
- | ELt Exp Exp
- | EIf Exp Exp Exp
+ | EApp Exp Exp
+ | EPlus Exp Exp
+ | EMinus Exp Exp
+ | ELess Exp Exp
+ | ECond Exp Exp Exp
+ | EAbs Ident Exp
   deriving (Eq,Ord,Show)
 

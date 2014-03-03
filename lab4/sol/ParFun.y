@@ -9,13 +9,6 @@ import ErrM
 }
 
 %name pProgram Program
-%name pDef Def
-%name pListDef ListDef
-%name pListIdent ListIdent
-%name pExp3 Exp3
-%name pExp2 Exp2
-%name pExp Exp
-%name pExp1 Exp1
 
 -- no lexer declaration
 %monad { Err } { thenM } { returnM }
@@ -49,13 +42,13 @@ Program :: { Program }
 Program : ListDef { Prog (reverse $1) } 
 
 
-Def :: { Def }
-Def : Ident ListIdent '=' Exp { Def $1 (reverse $2) $4 } 
-
-
 ListDef :: { [Def] }
 ListDef : {- empty -} { [] } 
   | ListDef Def ';' { flip (:) $1 $2 }
+
+
+Def :: { Def }
+Def : Ident ListIdent '=' Exp { Df $1 (reverse $2) $4 } 
 
 
 ListIdent :: { [Ident] }
@@ -74,17 +67,17 @@ Exp2 : Exp2 Exp3 { EApp $1 $2 }
   | Exp3 { $1 }
 
 
-Exp :: { Exp }
-Exp : '\\' Ident '->' Exp { EAbs $2 $4 } 
-  | 'if' Exp1 'then' Exp1 'else' Exp { EIf $2 $4 $6 }
-  | Exp1 { $1 }
-
-
 Exp1 :: { Exp }
-Exp1 : Exp1 '+' Exp2 { EAdd $1 $3 } 
-  | Exp1 '-' Exp2 { ESub $1 $3 }
-  | Exp1 '<' Exp2 { ELt $1 $3 }
+Exp1 : Exp1 '+' Exp2 { EPlus $1 $3 } 
+  | Exp1 '-' Exp2 { EMinus $1 $3 }
+  | Exp1 '<' Exp2 { ELess $1 $3 }
   | Exp2 { $1 }
+
+
+Exp :: { Exp }
+Exp : 'if' Exp1 'then' Exp1 'else' Exp { ECond $2 $4 $6 } 
+  | '\\' Ident '->' Exp { EAbs $2 $4 }
+  | Exp1 { $1 }
 
 
 

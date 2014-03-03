@@ -93,7 +93,7 @@ instance Print Program where
 
 instance Print Def where
   prt i e = case e of
-   Def id ids exp -> prPrec i 0 (concatD [prt 0 id , prt 0 ids , doc (showString "=") , prt 0 exp])
+   Df id ids exp -> prPrec i 0 (concatD [prt 0 id , prt 0 ids , doc (showString "=") , prt 0 exp])
 
   prtList es = case es of
    [] -> (concatD [])
@@ -102,13 +102,13 @@ instance Print Def where
 instance Print Exp where
   prt i e = case e of
    EVar id -> prPrec i 3 (concatD [prt 0 id])
-   EApp exp0 exp -> prPrec i 2 (concatD [prt 2 exp0 , prt 3 exp])
-   EAbs id exp -> prPrec i 0 (concatD [doc (showString "\\") , prt 0 id , doc (showString "->") , prt 0 exp])
    EInt n -> prPrec i 3 (concatD [prt 0 n])
-   EAdd exp0 exp -> prPrec i 1 (concatD [prt 1 exp0 , doc (showString "+") , prt 2 exp])
-   ESub exp0 exp -> prPrec i 1 (concatD [prt 1 exp0 , doc (showString "-") , prt 2 exp])
-   ELt exp0 exp -> prPrec i 1 (concatD [prt 1 exp0 , doc (showString "<") , prt 2 exp])
-   EIf exp0 exp1 exp -> prPrec i 0 (concatD [doc (showString "if") , prt 1 exp0 , doc (showString "then") , prt 1 exp1 , doc (showString "else") , prt 0 exp])
+   EApp exp0 exp -> prPrec i 2 (concatD [prt 2 exp0 , prt 3 exp])
+   EPlus exp0 exp -> prPrec i 1 (concatD [prt 1 exp0 , doc (showString "+") , prt 2 exp])
+   EMinus exp0 exp -> prPrec i 1 (concatD [prt 1 exp0 , doc (showString "-") , prt 2 exp])
+   ELess exp0 exp -> prPrec i 1 (concatD [prt 1 exp0 , doc (showString "<") , prt 2 exp])
+   ECond exp0 exp1 exp -> prPrec i 0 (concatD [doc (showString "if") , prt 1 exp0 , doc (showString "then") , prt 1 exp1 , doc (showString "else") , prt 0 exp])
+   EAbs id exp -> prPrec i 0 (concatD [doc (showString "\\") , prt 0 id , doc (showString "->") , prt 0 exp])
 
 
 

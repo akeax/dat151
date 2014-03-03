@@ -1,26 +1,17 @@
-.PHONY: all bnfc runmini compilemini
+compiler: bnfc compiler
 
-all: compiler interpreter
-
-compiler: bnfc compilemini
-interpreter: bnfc runmini
-
-compilemini:
-	ghc --make compilemini.hs -o compilemini
-
-runmini:
-	ghc --make runmini.hs -o runmini
+compiler:
+	ghc -threaded --make lab3.hs -o lab3
 
 bnfc:
-	bnfc --haskell ../Mini.cf
-	happy -gca ParMini.y
-	alex -g LexMini.x
+	bnfc --haskell CPP.cf
+	happy -gca ParCPP.y
+	alex -g LexCPP.x
 
 clean:
-	-rm -f runmini
 	-rm -f *.log *.aux *.hi *.o *.dvi
-	-rm -f DocMini.ps
+	-rm -f DocCPP.ps
 
 distclean: clean
-	-rm -f DocMini.* LexMini.* ParMini.* LayoutMini.* SkelMini.* PrintMini.* TestMini.* AbsMini.* TestMini ErrM.* SharedString.* Mini.dtd XMLMini.*
+	-rm -f DocCPP.* LexCPP.* ParCPP.* LayoutCPP.* SkelCPP.* PrintCPP.* TestCPP.* AbsCPP.* TestCPP ErrM.* SharedString.* CPP.dtd XMLCPP.*
 	

@@ -1,6 +1,6 @@
 @echo off
 
-del Makefile
+rem del Makefile
 del AbsFun.hi
 del AbsFun.hs
 del AbsFun.o
@@ -32,6 +32,6 @@ del TestFun.hi
 del TestFun.hs
 del TestFun.o
 
-bnfc -m Fun.bnfc
+rem bnfc -m Fun.cf
 mingw32-make
 rem .\r

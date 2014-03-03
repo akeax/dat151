@@ -1,18 +1,32 @@
-all: 
+compiler: bnfc compiler
+
+compiler:
+	ghc -threaded --make lab4.hs -o lab4
+
+bnfc:
+	bnfc --haskell Fun.cf
 	happy -gca ParFun.y
 	alex -g LexFun.x
-	ghc --make TestFun.hs -o TestFun
 
-doc: DocFun.pdf
+# clean:
+# 	-rm -Force *.log
+# 	-rm -Force *.aux
+# 	-rm -Force *.hi
+# 	-rm -Force *.o
+# 	-rm -Force *.dvi
+# 	-rm -Force DocFun.ps
 
-DocFun.pdf: DocFun.tex
-	pdflatex DocFun.tex
-
-clean: 
-	-rm -f *.log *.aux *.hi *.o *.dvi
-	-rm -f DocFun.ps
-
-distclean: clean
-	-rm -f DocFun.* LexFun.* ParFun.* LayoutFun.* SkelFun.* PrintFun.* TestFun.* AbsFun.* TestFun ErrM.* SharedString.* ComposOpFun.* Fun.dtd XMLFun.* Makefile*
-	
-
+# distclean: clean
+# 	-rm -Force DocFun.*
+# 	-rm -Force LexFun.*
+# 	-rm -Force ParFun.*
+# 	-rm -Force LayoutFun.*
+# 	-rm -Force SkelFun.*
+# 	-rm -Force PrintFun.*
+# 	-rm -Force TestFun.*
+# 	-rm -Force AbsFun.*
+# 	-rm -Force TestFun
+# 	-rm -Force ErrM.*
+# 	-rm -Force SharedString.*
+# 	-rm -Force Fun.dtd
+# 	-rm -Force XMLFun.*

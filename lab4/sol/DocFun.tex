@@ -46,9 +46,9 @@ The reserved words used in Fun are the following: \\
 The symbols used in Fun are the following: \\
 
 \begin{tabular}{lll}
-{\symb{{$=$}}} &{\symb{;}} &{\symb{$\backslash$}} \\
-{\symb{{$-$}{$>$}}} &{\symb{{$+$}}} &{\symb{{$-$}}} \\
-{\symb{{$<$}}} &{\symb{(}} &{\symb{)}} \\
+{\symb{;}} &{\symb{{$=$}}} &{\symb{{$+$}}} \\
+{\symb{{$-$}}} &{\symb{{$<$}}} &{\symb{$\backslash$}} \\
+{\symb{{$-$}{$>$}}} &{\symb{(}} &{\symb{)}} \\
 \end{tabular}\\
 
 \subsection*{Comments}
@@ -65,12 +65,12 @@ All other symbols are terminals.\\
 \end{tabular}\\
 
 \begin{tabular}{lll}
-{\nonterminal{Def}} & {\arrow}  &{\nonterminal{Ident}} {\nonterminal{ListIdent}} {\terminal{{$=$}}} {\nonterminal{Exp}}  \\
+{\nonterminal{ListDef}} & {\arrow}  &{\emptyP} \\
+ & {\delimit}  &{\nonterminal{Def}} {\terminal{;}} {\nonterminal{ListDef}}  \\
 \end{tabular}\\
 
 \begin{tabular}{lll}
-{\nonterminal{ListDef}} & {\arrow}  &{\emptyP} \\
- & {\delimit}  &{\nonterminal{Def}} {\terminal{;}} {\nonterminal{ListDef}}  \\
+{\nonterminal{Def}} & {\arrow}  &{\nonterminal{Ident}} {\nonterminal{ListIdent}} {\terminal{{$=$}}} {\nonterminal{Exp}}  \\
 \end{tabular}\\
 
 \begin{tabular}{lll}
@@ -90,16 +90,16 @@ All other symbols are terminals.\\
 \end{tabular}\\
 
 \begin{tabular}{lll}
-{\nonterminal{Exp}} & {\arrow}  &{\terminal{$\backslash$}} {\nonterminal{Ident}} {\terminal{{$-$}{$>$}}} {\nonterminal{Exp}}  \\
- & {\delimit}  &{\terminal{if}} {\nonterminal{Exp1}} {\terminal{then}} {\nonterminal{Exp1}} {\terminal{else}} {\nonterminal{Exp}}  \\
- & {\delimit}  &{\nonterminal{Exp1}}  \\
-\end{tabular}\\
-
-\begin{tabular}{lll}
 {\nonterminal{Exp1}} & {\arrow}  &{\nonterminal{Exp1}} {\terminal{{$+$}}} {\nonterminal{Exp2}}  \\
  & {\delimit}  &{\nonterminal{Exp1}} {\terminal{{$-$}}} {\nonterminal{Exp2}}  \\
  & {\delimit}  &{\nonterminal{Exp1}} {\terminal{{$<$}}} {\nonterminal{Exp2}}  \\
  & {\delimit}  &{\nonterminal{Exp2}}  \\
+\end{tabular}\\
+
+\begin{tabular}{lll}
+{\nonterminal{Exp}} & {\arrow}  &{\terminal{if}} {\nonterminal{Exp1}} {\terminal{then}} {\nonterminal{Exp1}} {\terminal{else}} {\nonterminal{Exp}}  \\
+ & {\delimit}  &{\terminal{$\backslash$}} {\nonterminal{Ident}} {\terminal{{$-$}{$>$}}} {\nonterminal{Exp}}  \\
+ & {\delimit}  &{\nonterminal{Exp1}}  \\
 \end{tabular}\\
 
 

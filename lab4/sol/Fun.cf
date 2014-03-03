@@ -1,0 +1,25 @@
+entrypoints Program ;
+
+-- programs
+Prog.   Program ::= [Def] ;
+terminator Def ";" ;
+
+-- definitions
+Df.     Def     ::= Ident [Ident] "=" Exp ;
+terminator Ident "" ;
+
+-- expressions
+EVar.   Exp3    ::= Ident ;
+EInt.   Exp3    ::= Integer ;
+EApp.   Exp2    ::= Exp2 Exp3;
+
+EPlus.  Exp1    ::= Exp1 "+" Exp2 ;
+EMinus. Exp1    ::= Exp1 "-" Exp2 ;
+ELess.  Exp1    ::= Exp1 "<" Exp2 ;
+ECond.  Exp     ::= "if" Exp1 "then" Exp1 "else" Exp ;
+EAbs.   Exp     ::= "\\" Ident "->" Exp;
+
+coercions Exp 3 ;
+
+-- comments
+comment "--" ;
